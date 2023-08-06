@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    .outer-division {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .inner-division {
+
+    }
+  </style>
+</head>
+<body>
+  <div class="outer-division" style="width: 1500px; height: 700px; background-color: white;">
+    <div class="inner-division" style="background-color: white; height: 200px; width: 200px;">
+      <center>
+        <form id="myForm" target="_blank">
+          <label for="fname" style="color: black;"><b>CAR COMPANY NAME</b></label><br>
+          <input type="text" list="cars" id="fname" name="fname" value="" required>
+          <datalist id="cars">
+            <option value="Ford"></option>
+            <option value="Mitsubishi"></option>
+            <option value="Buick"></option>
+            <option value="Mazda"></option>
+            <option value="Chevrolet"></option>
+            <option value="Volksvagen"></option>
+            <option value="Honda"></option>
+            <option value="Nissan"></option>
+            <option value="Toyota"></option>
+            <option value="Dodge"></option>
+          </datalist><br>
+
+          <label for="lname" style="color: black;"><b>Model</label><br>
+          <input type="text" list="models" id="lname" name="lname" value="" required>
+          <datalist id="models">
+            <option value="Musatang Fastback"></option>
+            <option value="Eclipse"></option>
+            <option value="Grand National GNX"></option>
+            <option value="RX-7"></option>
+            <option value="Camaro Yenko"></option>
+            <option value="Jetta"></option>
+            <option value="Supra Turbo"></option>
+            <option value="Charger"></option>
+            <option value="Skyline GT-R"></option>
+            <option value="Civic"></option>
+          </datalist><br>
+
+          <label for="year" style="color: black;">Year</label><br>
+          <input type="number" id="year" name="year" placeholder="YYYY" min="1967" max="1999" required><br><br>
+
+          <input type="submit" value="Submit">
+          <input type="reset" value="Reset">
+        </form>
+      </center>
+    </div>
+  </div>
+
+  <script>
+    document.getElementById("myForm").addEventListener("submit", function(event) {
+      event.preventDefault(); // Prevent the default form submission
+
+      // Get the selected values from the form
+      const carCompany = document.getElementById("fname").value;
+      const carModel = document.getElementById("lname").value;
+      const carYear = document.getElementById("year").value;
+
+      // Define the mapping of car model and year combinations to URLs
+      const redirections = {
+        "Honda|Civic|1995": "https://www.nissanusa.com/vehicles/sports-cars/gt-r.html",
+        "Volksvagen|Jetta|1995": "https://www.example.com/volksvagen-jetta-1995-page",
+        // Add more mappings here as needed
+      };
+
+      // Generate the key for the redirections object
+      const key = `${carCompany}|${carModel}|${carYear}`;
+
+      // Redirect to the appropriate page based on the selected values
+      if (redirections.hasOwnProperty(key)) {
+        window.open(redirections[key], "_blank");
+      } else {
+        // Default redirection if no specific condition is met
+        window.open("https://www.example.com/default-page", "_blank");
+      }
+    });
+  </script>
+</body>
+</html>
