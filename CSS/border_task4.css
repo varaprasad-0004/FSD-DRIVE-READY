@@ -1,6 +1,0 @@
-.imageborder{
-	border: 40px solid black;
-	border-image: url(sivoham.jpg);
-	border-image-slice: 80;
-	border-image-repeat: round;
-}
